@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option java_package = "com.example.orderservice";
+option java_outer_classname = "OrderServiceProto";
+option go_package = "orderservicepb";
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (OrderResponse);
+
+  rpc GetOrder(GetOrderRequest) returns (OrderResponse);
+
+  rpc UpdateOrder(UpdateOrderRequest) returns (OrderResponse);
+
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
+}
+
+message CreateOrderRequest {
+  string user_id = 1;
+  repeated string product_ids = 2;
+  float total_amount = 3;
+}
+
+message GetOrderRequest {
+  string id = 1;
+}
+
+message UpdateOrderRequest {
+  string id = 1;
+  repeated string product_ids = 2;
+  float total_amount = 3;
+}
+
+message CancelOrderRequest {
+  string id = 1;
+}
+
+message OrderResponse {
+  string id = 1;
+  string user_id = 2;
+  repeated string product_ids = 3;
+  float total_amount = 4;
+  string status = 5;
+}
+
+message CancelOrderResponse {
+  bool success = 1;
+}
