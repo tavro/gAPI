@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option java_package = "com.example.productservice";
+option java_outer_classname = "ProductServiceProto";
+option go_package = "productservicepb";
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (ProductResponse);
+
+  rpc GetProduct(GetProductRequest) returns (ProductResponse);
+
+  rpc UpdateProduct(UpdateProductRequest) returns (ProductResponse);
+
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  float price = 3;
+  int32 stock = 4;
+}
+
+message GetProductRequest {
+  string id = 1;
+}
+
+message UpdateProductRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int32 stock = 5;
+}
+
+message DeleteProductRequest {
+  string id = 1;
+}
+
+message ProductResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  int32 stock = 5;
+}
+
+message DeleteProductResponse {
+  bool success = 1;
+}
